@@ -97,7 +97,7 @@ const Home = () => {
           }
         }
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching user:", error);
       }
     };
     if (token) {

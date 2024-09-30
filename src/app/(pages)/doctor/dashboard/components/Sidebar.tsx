@@ -28,45 +28,86 @@ export function SidebarDemo() {
 
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "http://localhost:5000/doctor-service/user",
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
+
+  //       if (response.ok) {
+  //         const result = await response.json();
+  //         console.log('doctor is ',result.user);
+  //         setUser(result.user);
+  //         dispatch(setDoctorData(result.user))
+  //         console.log("User blocked status:", result.user.isBlocked);
+
+  //         // Check if the user is blocked and handle logout
+  //         if (result.user.isBlocked) {
+  //           alert("Your account has been blocked. You will be logged out.");
+  //           hanldeLogout();
+  //         }
+  //       } else {
+  //         console.log("Failed to fetch user data");
+  //         hanldeLogout();
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   if (token) {
+  //     fetchUser();
+  //   } else {
+  //     router.push("/login");
+  //   }
+  // }, [router, token, user]);
+
+
   useEffect(() => {
     const fetchUser = async () => {
+      if (!token) {
+        router.push("/login");
+        return;
+      }
       try {
-        const response = await fetch(
-          "http://localhost:5000/doctor-service/user",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
+        const response = await fetch("http://localhost:5000/doctor-service/user", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
         if (response.ok) {
           const result = await response.json();
-          console.log('doctor is ',result.user);
-          setUser(result.user);
-          dispatch(setDoctorData(result.user))
-          console.log("User blocked status:", result.user.isBlocked);
-
-          // Check if the user is blocked and handle logout
-          if (result.user.isBlocked) {
-            alert("Your account has been blocked. You will be logged out.");
-            hanldeLogout();
+          console.log('Fetched user:', result.user);
+          
+          if (result.user) {
+            setUser(result.user);
+            dispatch(setDoctorData(result.user));
+            
+            // Check if the user is blocked
+            if (result.user.isBlocked) {
+              alert("Your account has been blocked. You will be logged out.");
+              hanldeLogout(); // Fix the function name here
+            }
           }
         } else {
-          console.log("Failed to fetch user data");
-          hanldeLogout();
+          console.error("Failed to fetch user data");
+          hanldeLogout(); // Fix the function name here
         }
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching user data:", error);
+        // Optionally handle errors more gracefully in UI
       }
     };
-    if (token) {
-      fetchUser();
-    } else {
-      router.push("/login");
-    }
-  }, [router, token, user]);
-
+  
+    fetchUser();
+  }, [router, token]); // Removed user from dependencies
+  
 
 
   const hanldeLogout = () => {
