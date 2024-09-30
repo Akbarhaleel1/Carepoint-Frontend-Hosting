@@ -10,10 +10,16 @@ const Otp = () => {
   const [timeLeft, setTimeLeft] = useState(3);
   const [canResend, setCanResend] = useState(false);
   const [error, setError] = useState("");
+  const [params, setParams] = useState<URLSearchParams| null>(null);
 
-  const params = new URLSearchParams(window.location.search);
-  const emailParam = params.get('email');
-  const roleParam = params.get('role');
+  // const params = new URLSearchParams(window.location.search);
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    setParams(searchParams);
+  }, []);
+
+  const emailParam = params?.get('email');
+  const roleParam = params?.get('role');
 
   const router = useRouter();
 
