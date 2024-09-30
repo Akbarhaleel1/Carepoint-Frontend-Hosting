@@ -207,7 +207,6 @@ const Appointments = () => {
           })
         : true;
 
-    // Check if the doctor’s location matches the search location
     const matchesLocation = locationSearchValue
       ? doctor.practiceAddress
           ?.toLowerCase()

@@ -65,41 +65,6 @@ const ChatInterface: React.FC = () => {
     }
  
 
-    // socketConnection.on("receive-full-messages", (messages: any) => {
-    //   console.log("receive-full-messages", messages);
-
-    //   const { receiverDatas, senderDatas } = messages;
-
-    //   // console.log("senderData", senderDatas);
-
-    //   // setMessages((prevMessages) => {
-    //   //   const allMessages = [...prevMessages, ...receiverDatas, ...senderDatas];
-
-    //   //   // Remove duplicate messages
-    //   //   const uniqueMessages = allMessages.filter(
-    //   //     (msg, index, self) =>
-    //   //       index === self.findIndex((m) => m._id === msg._id)
-    //   //   );
-
-    //   //   return uniqueMessages;
-    //   // });
-
-    //   // const newPatients = receiverDatas.map((message: any) => ({
-    //   //   id: message.senderData.id,
-    //   //   name: message.senderData.name,
-    //   // }));
-
-    //   // // Filter out duplicate patients
-    //   // setPatients((prevPatients) => {
-    //   //   const uniquePatients = [...prevPatients, ...newPatients].filter(
-    //   //     (patient, index, self) =>
-    //   //       index === self.findIndex((p) => p.id === patient.id)
-    //   //   );
-    //   //   return uniquePatients;
-    //   // });
-    // });
-
-
 
     socketConnection.on("receive-message", (message: any) => {
       console.log("Received message:", message);

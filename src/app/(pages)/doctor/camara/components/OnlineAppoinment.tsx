@@ -303,7 +303,7 @@ const DoctorVideoCall = () => {
       <div className="w-64 bg-white shadow-md">
         <div className="p-4">
           <h2 className="text-xl font-semibold text-gray-800">
-            Doctor's Dashboard
+            Doctors Dashboard
           </h2>
         </div>
         <nav className="mt-4">
@@ -360,20 +360,7 @@ const DoctorVideoCall = () => {
                   className="w-full h-48 object-cover"
                 />
               </div>
-              {/* <div className="bg-white rounded-lg shadow-md p-4">
-                <h3 className="text-lg font-semibold mb-2">Patient Queue</h3>
-                <ul className="space-y-2">
-                  {patientQueue.map((patient, index) => (
-                    <li
-                      key={index}
-                      className="flex items-center justify-between p-2 hover:bg-gray-100 rounded"
-                    >
-                      <span>{patient}</span>
-                      <ChevronRight className="h-5 w-5 text-gray-400" />
-                    </li>
-                  ))}
-                </ul>
-              </div> */}
+  
             </div>
           </div>
         </main>

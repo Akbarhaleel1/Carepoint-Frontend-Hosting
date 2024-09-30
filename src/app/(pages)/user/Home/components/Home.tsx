@@ -207,64 +207,11 @@ const Home = () => {
         </div>
         <div className="flex items-center">
           <h1 className="text-[26px] font-bold text-white">
-            Doctor’s Apponmenets
+            Doctors Apponmenets
           </h1>
-          {/* <span className="text-4xl font-bold text-white ml-10">+</span> */}
         </div>
       </div>
 
-      {/* <div
-        id="Services"
-        data-aos="fade-up"
-        data-aos-anchor-placement="top-bottom"
-        className="relative bg-[#0E0A3C] rounded-3xl m-3 p-6 sm:p-8 md:p-16 lg:p-32 py-16 sm:py-24 md:py-32 lg:py-[350px] mt-10"
-      >
-        <div className="text-white lg:absolute lg:top-32 lg:max-w-[50%]">
-          <h2 className="font-bold text-3xl sm:text-4xl lg:text-[40px] leading-tight">
-            Emergency Services
-          </h2>
-          <h2 className="font-thin text-xl sm:text-2xl lg:text-[25px] mt-2">
-            Immediate Help When You Need It Most
-          </h2>
-          <div className="mt-6 lg:mt-10 space-y-6 lg:space-y-10">
-            <p>
-              <span className="font-sans font-bold">AI-Driven First Aid:</span>{" "}
-              Get immediate, tailored instructions.
-            </p>
-            <p>
-              <span className="font-sans font-bold">Ambulance Dispatch:</span>{" "}
-              Quickly request an ambulance with real-time tracking.
-            </p>
-            <p>
-              <span className="font-sans font-bold">
-                Hospital Recommendations:
-              </span>{" "}
-              Get analyzed and recommended nearby hospitals
-              <br /> best suited for your condition.
-            </p>
-            <p>
-              <span className="font-sans font-bold">Coordinated Response:</span>{" "}
-              Seamless communication between ambulance drivers and <br />
-              hospitals for optimal care.
-            </p>
-          </div>
-        </div>
-        <div className="mt-8 lg:mt-0">
-          <Image
-            src={first}
-            alt="Logo"
-            width={580}
-            height={300}
-            className="rounded-3xl w-full max-w-[580px] h-auto mx-auto lg:absolute lg:right-12 lg:top-[100px] lg:max-w-[40%]"
-          />
-          <div className="mt-6 lg:mt-0 text-center lg:text-left">
-            <ShinyButton
-              text="See More"
-              className="bg-white lg:absolute lg:right-20 lg:bottom-10"
-            />
-          </div>
-        </div>
-      </div> */}
       <div
         data-aos="fade-up"
         data-aos-anchor-placement="top-bottom"
@@ -272,7 +219,7 @@ const Home = () => {
       >
         <div className="text-white lg:absolute lg:top-32 lg:max-w-[50%]">
           <h2 className="font-bold text-3xl sm:text-4xl lg:text-[40px] leading-tight">
-            Doctor's appointment
+            Doctors appointment
           </h2>
           <h2 className="font-thin text-xl sm:text-2xl lg:text-[25px] mt-2">
             Effortless Scheduling for Seamless Care

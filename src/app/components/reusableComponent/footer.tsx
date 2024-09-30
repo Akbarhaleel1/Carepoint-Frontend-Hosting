@@ -2,14 +2,12 @@
 import React from 'react'
 import {usePathname} from 'next/navigation'
 
-const footer = () => {
+const Footer = () => {
  const pathname = usePathname();
  const excludedRoutes = ['/user/Appointments/camara'];
  if(excludedRoutes.includes(pathname)){
   return null
  }
-
-
 
   return (
     <div>
@@ -59,4 +57,4 @@ const footer = () => {
   )
 }
 
-export default footer
+export default Footer 
