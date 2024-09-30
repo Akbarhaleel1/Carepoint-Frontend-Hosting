@@ -1,14 +1,10 @@
 "use client"; 
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import { Camera, X } from 'lucide-react';
 
-export const NotificationModal = ({ isOpen, onClose, doctorName }: any) => {
-  const router = useRouter();
+const NotificationModal = ({ isOpen, onClose, doctorName }: any) => {
 
   if (!isOpen) return null;
-
-
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
@@ -49,3 +45,5 @@ export const NotificationModal = ({ isOpen, onClose, doctorName }: any) => {
     </div>
   );
 };
+
+export default NotificationModal

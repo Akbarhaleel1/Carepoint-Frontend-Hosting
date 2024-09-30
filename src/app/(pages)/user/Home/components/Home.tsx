@@ -11,9 +11,8 @@ import { testimonials } from "@/app/(pages)/data/testmonials";
 import { TextGenerateEffect } from "@/app/components/ui/text-generate-effect";
 import "animate.css";
 import { useRouter } from "next/navigation";
-import { Socket, io } from 'socket.io-client';
-import {NotificationModal} from "../NotificationModal/page";
-
+import { Socket, io } from "socket.io-client";
+import NotificationModal from "../NotificationModal/page";
 
 const Home = () => {
   const words = `Your Health, Our Commitment`;
@@ -22,57 +21,53 @@ const Home = () => {
   const token = localStorage.getItem("token");
   const [roomId, setRoomId] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
+  const [modalMessage, setModalMessage] = useState("");
 
   const [socket, setSocket] = useState<Socket | null>(null);
   const [notifications, setNotifications] = useState<any[]>([]);
 
-
-
   useEffect(() => {
-    const socketInstance = io('http://localhost:10000');
+    const socketInstance = io("http://localhost:10000");
     setSocket(socketInstance);
 
-    let doctorData = localStorage.getItem('doctorOnlineAppoinemnets')
-    let userData = localStorage.getItem('user');
+    let doctorData = localStorage.getItem("doctorOnlineAppoinemnets");
+    let userData = localStorage.getItem("user");
 
-    
- if(doctorData && userData){
-  let parsedDoctor = JSON.parse(doctorData)
-  let parseduserData = JSON.parse(userData)
-  let roomId = generateRoomId(parsedDoctor.email,parseduserData.email)
+    if (doctorData && userData) {
+      let parsedDoctor = JSON.parse(doctorData);
+      let parseduserData = JSON.parse(userData);
+      let roomId = generateRoomId(parsedDoctor.email, parseduserData.email);
 
-    socketInstance.emit('join-notification', { roomId });
+      socketInstance.emit("join-notification", { roomId });
 
-    console.log('Socket instance', socketInstance);
-  }
+      console.log("Socket instance", socketInstance);
+    }
     // Handle socket connection
-    socketInstance.on('connect', () => {
-      console.log('Socket connected:', socketInstance.id);
+    socketInstance.on("connect", () => {
+      console.log("Socket connected:", socketInstance.id);
     });
-  
-    socketInstance.on('notification', (data) => {
-      console.log('Notification received');
+
+    socketInstance.on("notification", (data) => {
+      console.log("Notification received");
       const { roomId, message } = data;
       setRoomId(roomId);
-      console.log('Received notification:', { roomId, message });
-         setModalMessage(message);
+      console.log("Received notification:", { roomId, message });
+      setModalMessage(message);
       setIsModalOpen(true);
       // Optionally, update the notifications state
       setNotifications((prevNotifications) => [
         ...prevNotifications,
-        { roomId, message }
+        { roomId, message },
       ]);
     });
-  
+
     return () => {
       if (socketInstance) {
         socketInstance.disconnect();
-        console.log('Socket disconnected');
+        console.log("Socket disconnected");
       }
     };
-  }, []); 
-  
+  }, []);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -100,7 +95,7 @@ const Home = () => {
             alert("Your account has been blocked. You will be logged out.");
             hanldeLogout();
           }
-        } 
+        }
       } catch (error) {
         console.log(error);
       }
@@ -112,14 +107,13 @@ const Home = () => {
     }
   }, [router, token, user]);
 
-
   const generateRoomId = (doctorEmail: any, userEmail: string) => {
     const combinedString = `${doctorEmail}-${userEmail}`;
     return btoa(combinedString);
   };
 
   const handleProfile = () => {
-    router.push('/user/UserProfile')
+    router.push("/user/UserProfile");
   };
   const hanldeLogout = () => {
     localStorage.removeItem("token");
@@ -147,7 +141,10 @@ const Home = () => {
               Services
             </a>
             <span className="text-black">/</span>
-            <button onClick={handleProfile} className="text-black hover:text-gray-700">
+            <button
+              onClick={handleProfile}
+              className="text-black hover:text-gray-700"
+            >
               Profile
             </button>
             <span className="text-black">/</span>
@@ -186,7 +183,10 @@ const Home = () => {
         />
       </div>
 
-      <div className="relative bg-[#0067FF] rounded-3xl mt-4 m-3 p-10 flex space-x-10" id="services">
+      <div
+        className="relative bg-[#0067FF] rounded-3xl mt-4 m-3 p-10 flex space-x-10"
+        id="services"
+      >
         <div className="flex items-center">
           <h1 className="text-[26px] font-bold text-white">
             Emergency Services
@@ -259,11 +259,11 @@ const Home = () => {
             className="rounded-3xl w-full max-w-[580px] h-auto mx-auto lg:absolute lg:right-12 lg:top-[100px] lg:max-w-[40%]"
           />
           <div className="mt-6 lg:mt-0 text-center lg:text-left">
-          <a href="/user/Appointments">
-            <ShinyButton
-              text="Book Now"
-              className="bg-white lg:absolute lg:right-20 lg:bottom-10"
-            />
+            <a href="/user/Appointments">
+              <ShinyButton
+                text="Book Now"
+                className="bg-white lg:absolute lg:right-20 lg:bottom-10"
+              />
             </a>
           </div>
         </div>
@@ -319,12 +319,12 @@ const Home = () => {
             className="rounded-3xl w-full max-w-[680px] h-auto mx-auto lg:absolute lg:left-[780px] lg:top-[120px] lg:max-w-[50%] "
           />
           <div className="mt-6 lg:mt-0 text-center lg:text-left">
-          <a href="/user/MedicalStore">
-          <ShinyButton
-              text="Shop Now"
-              className="bg-white lg:absolute lg:right-20 lg:bottom-10"
-            />
-          </a>
+            <a href="/user/MedicalStore">
+              <ShinyButton
+                text="Shop Now"
+                className="bg-white lg:absolute lg:right-20 lg:bottom-10"
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -342,8 +342,9 @@ const Home = () => {
                   className="bg-white text-black rounded-xl p-6 md:p-8 shadow-lg w-72 md:w-80 flex-shrink-0 animate-scroll"
                 >
                   <p className="text-base md:text-lg mb-4">
-                    "{testimonial.text}"
+                    &quot;{testimonial.text}&quot;
                   </p>
+
                   <h4 className="font-semibold text-sm md:text-base">
                     {testimonial.name}
                   </h4>
@@ -387,10 +388,11 @@ const Home = () => {
         </div>
       </div>
       <div id="contact"></div>
-      <NotificationModal  
+      <NotificationModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        message={modalMessage}/>
+        message={modalMessage}
+      />
     </div>
   );
 };

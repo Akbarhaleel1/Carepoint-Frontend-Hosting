@@ -217,16 +217,6 @@ const Dashboard = () => {
             <MyChart />
 
           </div>
-
-          {/* <div
-            key="second-array"
-            className="h-[200px] lg:h-[300px] w-full lg:w-[50%] rounded-lg bg-[#0E0A3C]"
-          >
-            <h1 className="text-white font-bold relative left-4 top-4 text-[20px] ">
-              Revenue
-            </h1>
-            <PieChart/>
-          </div> */}
         </div>
 
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-10 flex-1">

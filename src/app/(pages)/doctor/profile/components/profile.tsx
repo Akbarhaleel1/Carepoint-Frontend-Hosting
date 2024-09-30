@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import doctor from "../../../../../../public/images/profile.png";
 import axiosInstance from "@/app/hooks/useApi";
-import { SuccessModal } from "./modal";
+import SuccessModal from "./modal";
 import demoDoctor2 from '../../../../../../public/images/demoDoctor.png'
 
 interface FormData {

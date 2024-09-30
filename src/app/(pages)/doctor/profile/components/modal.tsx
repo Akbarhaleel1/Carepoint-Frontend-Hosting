@@ -1,4 +1,4 @@
-export const SuccessModal = ({ message, onClose }: { message: string; onClose: () => void }) => (
+ const SuccessModal = ({ message, onClose }: { message: string; onClose: () => void }) => (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h4 className="text-lg font-semibold mb-4">Success</h4>
@@ -15,3 +15,5 @@ export const SuccessModal = ({ message, onClose }: { message: string; onClose: (
     </div>
   );
   
+
+export default SuccessModal
