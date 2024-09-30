@@ -63,7 +63,7 @@ export default function ForgotPassword() {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="mt-2 text-center text-sm text-gray-200"
           >
-            No worries, we'll send you reset instructions.
+            No worries, we will send you reset instructions.
           </motion.p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

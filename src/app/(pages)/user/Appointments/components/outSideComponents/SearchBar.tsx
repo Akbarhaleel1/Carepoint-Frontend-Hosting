@@ -106,20 +106,7 @@ export function PlaceholdersAndVanishInputDemo() {
             value={selectedSearchType === "doctor" ? doctorSearchValue : locationSearchValue}
           />
         </div>
-        {/* <Dropdown 
-          menu={{ 
-            items: rightDropdownItems, 
-            onClick: ({ key }) => handleFilterChange(key) 
-          }} 
-          className="ml-2"
-        >
-          <Button type="default" className="text-gray-600 hover:text-gray-800">
-            <Space>
-              Filters
-              <DownOutlined />
-            </Space>
-          </Button>
-        </Dropdown> */}
+ 
       </div>
     </div>
   );

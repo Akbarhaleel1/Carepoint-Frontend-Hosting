@@ -425,7 +425,7 @@ const Home = () => {
           <p className="text-black font-serif text-base lg:absolute lg:top-20 lg:left-[10px] max-w-md lg:max-w-none">
             At CarePoint, our goal is to transform emergency healthcare with
             cutting-edge technology. We connect patients, doctors, hospitals,
-            and ambulance drivers to deliver fast and efficient care when it's
+            and ambulance drivers to deliver fast and efficient care when it is
             needed most.
           </p>
         </div>
