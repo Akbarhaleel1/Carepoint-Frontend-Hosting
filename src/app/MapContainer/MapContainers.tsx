@@ -174,8 +174,6 @@
 
 'use client';
 
-
-// MapContainers.tsx
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { LatLngTuple, Icon, DivIcon, point } from 'leaflet';
@@ -222,8 +220,10 @@ const MapContainers = () => {
       try {
         const response = await axiosInstance.post('/doctor-service/selectedDoctorForMapTracking', { doctorEmail });
         const doctorAddress = response.data.result.practiceAddress;
+        console.log('Doctor address:', doctorAddress);
         const coordinates = await fetchCoordinates(doctorAddress);
         if (coordinates) {
+          console.log('Doctor coordinates:', coordinates);
           setDoctorLocation(coordinates);
         } else {
           console.error('Unable to fetch coordinates for the address');
@@ -237,6 +237,7 @@ const MapContainers = () => {
   }, [doctorEmail]);
 
   useEffect(() => {
+    // Check if running on the client side
     if (typeof window !== 'undefined' && navigator.geolocation) {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
@@ -331,7 +332,7 @@ const MapContainers = () => {
         )}
         {doctorLocation && (
           <Marker position={doctorLocation} icon={customIcon}>
-            <Popup>Doctor's location</Popup>
+            <Popup>Doctors location</Popup>
           </Marker>
         )}
       </MarkerClusterGroup>
