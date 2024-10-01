@@ -171,8 +171,7 @@
 
 // export default MapContainers;
 
-
-'use client';
+"use client"; // This line makes the component a client component
 
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
@@ -253,7 +252,7 @@ const MapContainers = () => {
     } else {
       console.error('Geolocation is not supported by this browser.');
     }
-  }, []);
+  }, []); // This useEffect runs only on the client side
 
   const customIcon = new Icon({
     iconUrl: location.src,
@@ -332,7 +331,7 @@ const MapContainers = () => {
         )}
         {doctorLocation && (
           <Marker position={doctorLocation} icon={customIcon}>
-            <Popup>Doctors location</Popup>
+            <Popup>Doctor's location</Popup>
           </Marker>
         )}
       </MarkerClusterGroup>
