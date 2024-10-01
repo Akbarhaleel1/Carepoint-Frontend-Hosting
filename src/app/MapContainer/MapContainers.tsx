@@ -197,6 +197,26 @@ const MapContainers = () => {
   const searchParams = useSearchParams();
   const doctorEmail = searchParams.get('email');
 
+  useEffect(() => {
+    // Ensure this code runs only in the client-side
+    if (typeof window !== 'undefined' && navigator.geolocation) {
+      const watchId = navigator.geolocation.watchPosition(
+        (position) => {
+          setUserLocation([position.coords.latitude, position.coords.longitude]);
+        },
+        (error) => {
+          console.error('Error watching user location:', error);
+        },
+        { enableHighAccuracy: true, maximumAge: 10000, timeout: 5000 }
+      );
+
+      return () => navigator.geolocation.clearWatch(watchId);
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  }, []); 
+
+
   const fetchCoordinates = async (address: string): Promise<LatLngTuple | null> => {
     try {
       const apiKey = 'b45c5dc54e0c4256ab1e9c3953b72210';
@@ -236,24 +256,6 @@ const MapContainers = () => {
     fetchDoctorLocation();
   }, [doctorEmail]);
 
-  useEffect(() => {
-    // Ensure this code runs only in the client-side
-    if (typeof window !== 'undefined' && navigator.geolocation) {
-      const watchId = navigator.geolocation.watchPosition(
-        (position) => {
-          setUserLocation([position.coords.latitude, position.coords.longitude]);
-        },
-        (error) => {
-          console.error('Error watching user location:', error);
-        },
-        { enableHighAccuracy: true, maximumAge: 10000, timeout: 5000 }
-      );
-
-      return () => navigator.geolocation.clearWatch(watchId);
-    } else {
-      console.error('Geolocation is not supported by this browser.');
-    }
-  }, [userLocation]); 
 
   const customIcon = new Icon({
     iconUrl: location.src,
