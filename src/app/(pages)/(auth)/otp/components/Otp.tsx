@@ -13,10 +13,18 @@ const Otp = () => {
   const [params, setParams] = useState<URLSearchParams| null>(null);
 
   // const params = new URLSearchParams(window.location.search);
+  // useEffect(() => {
+  //   const searchParams = new URLSearchParams(window.location.search);
+  //   setParams(searchParams);
+  // }, []);
+
   useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    setParams(searchParams);
-  }, []);
+    // Ensure this code runs only in the client-side
+    if (typeof window !== 'undefined') {
+      const searchParams = new URLSearchParams(window.location.search);
+      setParams(searchParams);
+    }
+  }, []); 
 
   const emailParam = params?.get('email');
   const roleParam = params?.get('role');

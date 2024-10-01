@@ -294,21 +294,37 @@ const Login = () => {
   const [errors, setErrors] = useState({ email: "", password: "" });
   const router = useRouter();
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const userData = params.get("user");
-    const tokenData = params.get("token");
+  // useEffect(() => {
+  //   const params = new URLSearchParams(window.location.search);
+  //   const userData = params.get("user");
+  //   const tokenData = params.get("token");
 
-    if (userData && tokenData) {
-      const user: User = JSON.parse(decodeURIComponent(userData));
-      localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("token", decodeURIComponent(tokenData));
-      router.push("/user/Home");
-    } else {
-      console.log("No user data or token found in query parameters.");
+  //   if (userData && tokenData) {
+  //     const user: User = JSON.parse(decodeURIComponent(userData));
+  //     localStorage.setItem("user", JSON.stringify(user));
+  //     localStorage.setItem("token", decodeURIComponent(tokenData));
+  //     router.push("/user/Home");
+  //   } else {
+  //     console.log("No user data or token found in query parameters.");
+  //   }
+  // }, [router]);
+  useEffect(() => {
+
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const userData = params.get("user");
+      const tokenData = params.get("token");
+
+      if (userData && tokenData) {
+        const user = JSON.parse(decodeURIComponent(userData));
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", decodeURIComponent(tokenData));
+        router.push("/user/Home");
+      } else {
+        console.log("No user data or token found in query parameters.");
+      }
     }
   }, [router]);
-
   const validateForm = () => {
     let isValid = true;
     const newErrors = { email: "", password: "" };

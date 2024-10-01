@@ -104,12 +104,19 @@ export default function ResetPassword() {
   const router = useRouter();
 
   // Ensure the component is mounted before using the router
+  // useEffect(() => {
+  //   const queryParams = new URLSearchParams(window.location.search);
+  //   const emailParam = queryParams.get('email');
+  //   setEmail(emailParam);
+  // }, []);
   useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const emailParam = queryParams.get('email');
-    setEmail(emailParam);
-  }, []);
-
+    if (typeof window !== 'undefined') { // Ensure this runs only on the client side
+      const queryParams = new URLSearchParams(window.location.search);
+      const emailParam = queryParams.get('email');
+      setEmail(emailParam);
+    }
+  }, [window.location.search]); // Add window.location.search as a dependency
+  
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
