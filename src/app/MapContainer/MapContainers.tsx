@@ -171,6 +171,8 @@
 
 // export default MapContainers;
 
+
+
 "use client"; // This line makes the component a client component
 
 import React, { useEffect, useState } from 'react';
@@ -192,7 +194,6 @@ const MapContainers = () => {
   const [userLocation, setUserLocation] = useState<LatLngTuple | null>(null);
   const [doctorLocation, setDoctorLocation] = useState<LatLngTuple | null>(null);
   const locationSearchValue = useSelector((state: RootState) => state.search.locationSearchValue);
-
   const searchParams = useSearchParams();
   const doctorEmail = searchParams.get('email');
 
