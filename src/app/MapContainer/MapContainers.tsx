@@ -253,7 +253,7 @@ const MapContainers = () => {
     } else {
       console.error('Geolocation is not supported by this browser.');
     }
-  }, []); // This useEffect runs only on the client side
+  }, [userLocation]); 
 
   const customIcon = new Icon({
     iconUrl: location.src,

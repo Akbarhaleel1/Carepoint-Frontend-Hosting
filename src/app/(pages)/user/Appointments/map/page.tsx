@@ -26,7 +26,7 @@ const Page = () => {
   return (
     <div>
       <Suspense fallback={<div>Loading...</div>}>
-        <MapComponent />
+        <MapComponent/>
       </Suspense>
     </div>
   );
