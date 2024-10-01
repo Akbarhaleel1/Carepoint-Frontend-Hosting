@@ -199,7 +199,7 @@ const MapContainers = () => {
 
   useEffect(() => {
     // Ensure this code runs only in the client-side
-    if (typeof window !== 'undefined' && navigator.geolocation) {
+    if (navigator.geolocation) {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
           setUserLocation([position.coords.latitude, position.coords.longitude]);
