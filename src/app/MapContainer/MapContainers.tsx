@@ -173,8 +173,7 @@
 
 
 
-"use client"; // This line makes the component a client component
-
+"use client"; 
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { LatLngTuple, Icon, DivIcon, point } from 'leaflet';
@@ -194,6 +193,7 @@ const MapContainers = () => {
   const [userLocation, setUserLocation] = useState<LatLngTuple | null>(null);
   const [doctorLocation, setDoctorLocation] = useState<LatLngTuple | null>(null);
   const locationSearchValue = useSelector((state: RootState) => state.search.locationSearchValue);
+
   const searchParams = useSearchParams();
   const doctorEmail = searchParams.get('email');
 
@@ -237,7 +237,7 @@ const MapContainers = () => {
   }, [doctorEmail]);
 
   useEffect(() => {
-    // Check if running on the client side
+    // Ensure this code runs only in the client-side
     if (typeof window !== 'undefined' && navigator.geolocation) {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
