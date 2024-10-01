@@ -332,7 +332,7 @@ const MapContainers = () => {
         )}
         {doctorLocation && (
           <Marker position={doctorLocation} icon={customIcon}>
-            <Popup>Doctor's location</Popup>
+            <Popup>Doctors location</Popup>
           </Marker>
         )}
       </MarkerClusterGroup>
