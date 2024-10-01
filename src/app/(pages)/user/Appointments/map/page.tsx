@@ -25,9 +25,10 @@ const MapComponent = dynamic(() => import("@/app/MapContainer/MapContainers"), {
 const Page = () => {
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      {/* <Suspense fallback={<div>Loading...</div>}>
         <MapComponent />
-      </Suspense>
+      </Suspense> */}
+      hello
     </div>
   );
 };
