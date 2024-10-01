@@ -1,3 +1,128 @@
+// "use client";
+// import React, { useEffect, useState } from "react";
+// import Image from "next/image";
+// import logo from "../../../../../../public/images/logo.png";
+// import heartLogo from "../../../../../../public/images/heartLogo.png";
+// import first from "../../../../../../public/images/mediceneService.webp";
+// import second from "../../../../../../public/images/homepage2.gif";
+// import about2 from "../../../../../../public/images/about2.gif";
+// import ShinyButton from "@/app/components/magicui/shiny-button";
+// import { testimonials } from "@/app/(pages)/data/testmonials";
+// import { TextGenerateEffect } from "@/app/components/ui/text-generate-effect";
+// import "animate.css";
+// import { useRouter } from "next/navigation";
+// import { Socket, io } from "socket.io-client";
+// import NotificationModal from "../NotificationModal/page";
+
+// const Home = () => {
+//   const words = `Your Health, Our Commitment`;
+//   const router = useRouter();
+//   const [user, setUser] = useState<any>(null);
+//   const token = localStorage.getItem("token");
+//   const [roomId, setRoomId] = useState<string | null>(null);
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [modalMessage, setModalMessage] = useState("");
+
+//   const [socket, setSocket] = useState<Socket | null>(null);
+//   const [notifications, setNotifications] = useState<any[]>([]);
+
+//   useEffect(() => {
+//     const socketInstance = io("http://localhost:10000");
+//     setSocket(socketInstance);
+
+//     let doctorData = localStorage.getItem("doctorOnlineAppoinemnets");
+//     let userData = localStorage.getItem("user");
+
+//     if (doctorData && userData) {
+//       let parsedDoctor = JSON.parse(doctorData);
+//       let parseduserData = JSON.parse(userData);
+//       let roomId = generateRoomId(parsedDoctor.email, parseduserData.email);
+
+//       socketInstance.emit("join-notification", { roomId });
+
+//       console.log("Socket instance", socketInstance);
+//     }
+//     // Handle socket connection
+//     socketInstance.on("connect", () => {
+//       console.log("Socket connected:", socketInstance.id);
+//     });
+
+//     socketInstance.on("notification", (data) => {
+//       console.log("Notification received");
+//       const { roomId, message } = data;
+//       setRoomId(roomId);
+//       console.log("Received notification:", { roomId, message });
+//       setModalMessage(message);
+//       setIsModalOpen(true);
+//       // Optionally, update the notifications state
+//       setNotifications((prevNotifications) => [
+//         ...prevNotifications,
+//         { roomId, message },
+//       ]);
+//     });
+
+//     return () => {
+//       if (socketInstance) {
+//         socketInstance.disconnect();
+//         console.log("Socket disconnected");
+//       }
+//     };
+//   }, []);
+
+//   const closeModal = () => {
+//     setIsModalOpen(false);
+//   };
+
+//   useEffect(() => {
+//     const fetchUser = async () => {
+//       try {
+//         const response = await fetch(
+//           "http://localhost:4000/user-service/user",
+//           {
+//             headers: {
+//               Authorization: `Bearer ${token}`,
+//             },
+//           }
+//         );
+
+//         if (response.ok) {
+//           const result = await response.json();
+//           setUser(result.user);
+//           console.log("User blocked status:", result.user.isBlocked);
+
+//           // Check if the user is blocked and handle logout
+//           if (result.user.isBlocked) {
+//             alert("Your account has been blocked. You will be logged out.");
+//             hanldeLogout();
+//           }
+//         }
+//       } catch (error) {
+//         console.error("Error fetching user:", error);
+//       }
+//     };
+//     if (token) {
+//       fetchUser();
+//     } else {
+//       router.push("/login");
+//     }
+//   }, [router, token, user]);
+
+//   const generateRoomId = (doctorEmail: any, userEmail: string) => {
+//     const combinedString = `${doctorEmail}-${userEmail}`;
+//     return btoa(combinedString);
+//   };
+
+//   const handleProfile = () => {
+//     router.push("/user/UserProfile");
+//   };
+//   const hanldeLogout = () => {
+//     localStorage.removeItem("token");
+//     localStorage.removeItem("user");
+//     setUser(null);
+//     router.push("/login");
+//   };
+
+
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -14,66 +139,69 @@ import { useRouter } from "next/navigation";
 import { Socket, io } from "socket.io-client";
 import NotificationModal from "../NotificationModal/page";
 
-const Home = () => {
+const Home: React.FC = () => {
   const words = `Your Health, Our Commitment`;
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
-  const token = localStorage.getItem("token");
   const [roomId, setRoomId] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
-
   const [socket, setSocket] = useState<Socket | null>(null);
   const [notifications, setNotifications] = useState<any[]>([]);
 
   useEffect(() => {
-    const socketInstance = io("http://localhost:10000");
-    setSocket(socketInstance);
+    const token = localStorage.getItem("token");
 
-    let doctorData = localStorage.getItem("doctorOnlineAppoinemnets");
-    let userData = localStorage.getItem("user");
+    // Check for token before establishing the socket connection
+    if (token) {
+      const socketInstance = io("http://localhost:10000");
+      setSocket(socketInstance);
 
-    if (doctorData && userData) {
-      let parsedDoctor = JSON.parse(doctorData);
-      let parseduserData = JSON.parse(userData);
-      let roomId = generateRoomId(parsedDoctor.email, parseduserData.email);
+      try {
+        let doctorData = localStorage.getItem("doctorOnlineAppoinemnets");
+        let userData = localStorage.getItem("user");
 
-      socketInstance.emit("join-notification", { roomId });
+        if (doctorData && userData) {
+          let parsedDoctor = JSON.parse(doctorData);
+          let parsedUserData = JSON.parse(userData);
+          let roomId = generateRoomId(parsedDoctor.email, parsedUserData.email);
 
-      console.log("Socket instance", socketInstance);
-    }
-    // Handle socket connection
-    socketInstance.on("connect", () => {
-      console.log("Socket connected:", socketInstance.id);
-    });
+          socketInstance.emit("join-notification", { roomId });
+          console.log("Socket instance", socketInstance);
+        }
+      } catch (error) {
+        console.error("Error parsing doctor/user data from localStorage:", error);
+      }
 
-    socketInstance.on("notification", (data) => {
-      console.log("Notification received");
-      const { roomId, message } = data;
-      setRoomId(roomId);
-      console.log("Received notification:", { roomId, message });
-      setModalMessage(message);
-      setIsModalOpen(true);
-      // Optionally, update the notifications state
-      setNotifications((prevNotifications) => [
-        ...prevNotifications,
-        { roomId, message },
-      ]);
-    });
+      // Handle socket connection
+      socketInstance.on("connect", () => {
+        console.log("Socket connected:", socketInstance.id);
+      });
 
-    return () => {
-      if (socketInstance) {
+      socketInstance.on("notification", (data) => {
+        console.log("Notification received:", data);
+        const { roomId, message } = data;
+        setRoomId(roomId);
+        setModalMessage(message);
+        setIsModalOpen(true);
+
+        // Update notifications
+        setNotifications((prevNotifications) => [
+          ...prevNotifications,
+          { roomId, message },
+        ]);
+      });
+
+      return () => {
         socketInstance.disconnect();
         console.log("Socket disconnected");
-      }
-    };
+      };
+    }
   }, []);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
     const fetchUser = async () => {
       try {
         const response = await fetch(
@@ -93,21 +221,22 @@ const Home = () => {
           // Check if the user is blocked and handle logout
           if (result.user.isBlocked) {
             alert("Your account has been blocked. You will be logged out.");
-            hanldeLogout();
+            handleLogout();
           }
         }
       } catch (error) {
         console.error("Error fetching user:", error);
       }
     };
+
     if (token) {
       fetchUser();
     } else {
       router.push("/login");
     }
-  }, [router, token, user]);
+  }, [router]);
 
-  const generateRoomId = (doctorEmail: any, userEmail: string) => {
+  const generateRoomId = (doctorEmail: string, userEmail: string) => {
     const combinedString = `${doctorEmail}-${userEmail}`;
     return btoa(combinedString);
   };
@@ -115,11 +244,16 @@ const Home = () => {
   const handleProfile = () => {
     router.push("/user/UserProfile");
   };
-  const hanldeLogout = () => {
+
+  const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
     router.push("/login");
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -151,7 +285,7 @@ const Home = () => {
             <a
               href="/login"
               className="text-black hover:text-gray-700"
-              onClick={hanldeLogout}
+              onClick={handleLogout}
             >
               Logout
             </a>
