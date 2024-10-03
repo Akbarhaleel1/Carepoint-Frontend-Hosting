@@ -363,6 +363,7 @@ const Login = () => {
       }
 
       const response = await axiosInstance.post("/login", { email, password });
+      console.log('responce is',response)
 
       if (response.data.token) {
         const user = response.data.user;
