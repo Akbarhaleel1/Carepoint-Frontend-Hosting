@@ -154,7 +154,11 @@ const Home: React.FC = () => {
 
     // Check for token before establishing the socket connection
     if (token) {
-      const socketInstance = io("http://localhost:10000");
+      // const socketInstance = io("http://a7d8403a2da98496eb5dafb554a493ac-1454758012.eu-north-1.elb.amazonaws.com:10000");
+      const socketInstance = io("http://a7d8403a2da98496eb5dafb554a493ac-1454758012.eu-north-1.elb.amazonaws.com:10000", {
+        transports: ["websocket"], // Force WebSocket transport
+      });
+      
       setSocket(socketInstance);
 
       try {
@@ -181,6 +185,7 @@ const Home: React.FC = () => {
       socketInstance.on("notification", (data) => {
         console.log("Notification received:", data);
         const { roomId, message } = data;
+        console.log("message received:", message);
         setRoomId(roomId);
         setModalMessage(message);
         setIsModalOpen(true);
@@ -199,42 +204,42 @@ const Home: React.FC = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
 
-    const fetchUser = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:4000/user-service/user",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+  //   const fetchUser = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "http://http://ad707e099b18f4ca4b085266d8b655a5-3510328.eu-north-1.elb.amazonaws.com/user-service/user",
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
 
-        if (response.ok) {
-          const result = await response.json();
-          setUser(result.user);
-          console.log("User blocked status:", result.user.isBlocked);
+  //       if (response.ok) {
+  //         const result = await response.json();
+  //         setUser(result.user);
+  //         console.log("User blocked status:", result.user.isBlocked);
 
-          // Check if the user is blocked and handle logout
-          if (result.user.isBlocked) {
-            alert("Your account has been blocked. You will be logged out.");
-            handleLogout();
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
+  //         // Check if the user is blocked and handle logout
+  //         if (result.user.isBlocked) {
+  //           alert("Your account has been blocked. You will be logged out.");
+  //           handleLogout();
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching user:", error);
+  //     }
+  //   };
 
-    if (token) {
-      fetchUser();
-    } else {
-      router.push("/login");
-    }
-  }, [router]);
+  //   if (token) {
+  //     fetchUser();
+  //   } else {
+  //     router.push("/login");
+  //   }
+  // }, [router]);
 
   const generateRoomId = (doctorEmail: string, userEmail: string) => {
     const combinedString = `${doctorEmail}-${userEmail}`;

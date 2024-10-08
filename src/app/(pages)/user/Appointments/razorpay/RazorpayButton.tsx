@@ -1,7 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import axiosInstance from '@/app/hooks/useApi';
 import logo from '../../../../../../public/images/logo.png'
+import axios from 'axios';
 
 interface RazorpayButtonProps {
   amount: number;
@@ -35,7 +35,8 @@ const RazorpayButton: React.FC<RazorpayButtonProps> = ({ amount , onSuccess}) =>
 
     try {
       // Step 1: Create an order in the backend
-      const { data } = await axiosInstance.post('/user-service/payments', { amount });
+      // const { data } = await axiosInstance.post('/user-service/payments', { amount });
+      const { data } = await axios.post('http://af6b74875ec9c4a79b18df7eb306cf82-176738980.eu-north-1.elb.amazonaws.com:4000/user-service/payments', { amount });
 
       if (!data.success) {
         alert('Unable to create order. Please try again.');

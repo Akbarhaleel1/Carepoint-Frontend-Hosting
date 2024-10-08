@@ -35,7 +35,8 @@ const DoctorChatInterface: React.FC = () => {
   const socket = useRef<any>(null);
 
   useEffect(() => {
-    socket.current = io("http://localhost:10001");
+    // socket.current = io("http://a7d8403a2da98496eb5dafb554a493ac-1454758012.eu-north-1.elb.amazonaws.com:10001");
+    socket.current = io("ws://a7d8403a2da98496eb5dafb554a493ac-1454758012.eu-north-1.elb.amazonaws.com:10001");
 
     socket.current.on("connect", () => {
       console.log("Connected successfully");
