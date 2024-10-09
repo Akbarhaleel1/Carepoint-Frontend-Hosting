@@ -23,7 +23,7 @@ const UserVideoCall = () => {
   const localStreamRef = useRef<MediaStream | null>(null);
 
   useEffect(() => {
-    const socketInstance = io("https://redirect.eyescart.shop/video-call");
+    const socketInstance = io("https://redirect.eyescart.shop/video-call/");
     setSocket(socketInstance);
 
     socketInstance.on('connect', () => {

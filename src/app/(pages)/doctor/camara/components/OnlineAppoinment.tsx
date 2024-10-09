@@ -215,7 +215,7 @@ const DoctorVideoCall = () => {
 
   useEffect(() => {
     // Initialize socket connection
-    const socketInstance = io("http://a7d8403a2da98496eb5dafb554a493ac-1454758012.eu-north-1.elb.amazonaws.com:10000");
+    const socketInstance = io("https://redirect.eyescart.shop/video-call/");
     setSocket(socketInstance);
   
     // Retrieve doctor data from localStorage
