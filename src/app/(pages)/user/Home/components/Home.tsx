@@ -154,8 +154,7 @@ const Home: React.FC = () => {
 
     // Check for token before establishing the socket connection
     if (token) {
-      // const socketInstance = io("http://a7d8403a2da98496eb5dafb554a493ac-1454758012.eu-north-1.elb.amazonaws.com:10000");
-      const socketInstance = io("http://a7d8403a2da98496eb5dafb554a493ac-1454758012.eu-north-1.elb.amazonaws.com:10000", {
+      const socketInstance = io("https://redirect.eyescart.shop/video-call", {
         transports: ["websocket"], // Force WebSocket transport
       });
       
