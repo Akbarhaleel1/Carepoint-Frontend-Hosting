@@ -215,7 +215,7 @@ const DoctorVideoCall = () => {
 
   useEffect(() => {
     // Initialize socket connection
-    const socketInstance = io("https://redirect.eyescart.shop/video-call/");
+    const socketInstance = io("https://carepointcommunication.eyescart.shop/videocall");
     setSocket(socketInstance);
   
     // Retrieve doctor data from localStorage

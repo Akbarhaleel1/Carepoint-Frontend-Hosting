@@ -23,11 +23,11 @@ const UserVideoCall = () => {
   const localStreamRef = useRef<MediaStream | null>(null);
 
   useEffect(() => {
-    const socketInstance = io("https://redirect.eyescart.shop/video-call/");
+    const socketInstance = io("https://carepointcommunication.eyescart.shop/videocall");
     setSocket(socketInstance);
 
     socketInstance.on('connect', () => {
-      console.log('Socket connected:', socketInstance.id);
+      console.log('Socket connected:', socketInstance.id);  
     });
 
     socketInstance.on('ice-candidate', (data) => {
