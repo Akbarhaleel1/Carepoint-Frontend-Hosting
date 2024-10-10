@@ -23,7 +23,7 @@ const UserVideoCall = () => {
   const localStreamRef = useRef<MediaStream | null>(null);
 
   useEffect(() => {
-    const socketInstance = io("https://carepointcommunication.eyescart.shop/videocall");
+    const socketInstance = io("wss://carepointcommunication.eyescart.shop/videocall");
     setSocket(socketInstance);
 
     socketInstance.on('connect', () => {

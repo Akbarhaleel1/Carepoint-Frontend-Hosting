@@ -154,7 +154,7 @@ const Home: React.FC = () => {
 
     // Check for token before establishing the socket connection
     if (token) {
-      const socketInstance = io("https://carepointcommunication.eyescart.shop/videocall", {
+      const socketInstance = io("wss://carepointcommunication.eyescart.shop/videocall", {
         transports: ["websocket"], // Force WebSocket transport
       });
       
