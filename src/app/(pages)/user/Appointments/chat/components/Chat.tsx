@@ -48,7 +48,7 @@ const ChatInterface: React.FC = () => {
 
   useEffect(() => {
     // const socketConnection = io("http://a7d8403a2da98496eb5dafb554a493ac-1454758012.eu-north-1.elb.amazonaws.com:10001");
-    const socketConnection = io("wss://carepointcommunication.eyescart.shop/chat");
+    const socketConnection = io("wss://carepointcommunication.eyescart.shop:10001");
 
     socketConnection.on("connect", () => {
       console.log("Connected successfully");
