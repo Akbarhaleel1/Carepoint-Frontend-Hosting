@@ -35,7 +35,7 @@ const DoctorChatInterface: React.FC = () => {
   const socket = useRef<any>(null);
 
   useEffect(() => {
-    socket.current = io("wss://carepointcommunicationservice.eyescart.shop/socket.io");
+    socket.current = io("https://carepointcommunicationservice.eyescart.shop");
 
     socket.current.on("connect", () => {
       console.log("Connected successfully");
