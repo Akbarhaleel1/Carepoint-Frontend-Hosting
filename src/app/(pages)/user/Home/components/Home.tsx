@@ -152,7 +152,6 @@ const Home: React.FC = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    // Check for token before establishing the socket connection
     if (token) {
       const socketInstance = io("https://carepointcommunication.eyescart.shop/videocall", {
         transports: ["websocket"],
