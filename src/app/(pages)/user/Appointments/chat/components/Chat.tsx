@@ -49,7 +49,7 @@ const ChatInterface: React.FC = () => {
   useEffect(() => {
     // const socketConnection = io("https://carepointcommunicationservice.eyescart.shop/chat");
 
-    const socketConnection = io('https://carepointcommunicationservice.eyescart.shop/socket.io', {
+    const socketConnection = io('https://carepointcommunication.eyescart.shop/chat', {
       transports: ['websocket'],
       withCredentials: true, 
   });
