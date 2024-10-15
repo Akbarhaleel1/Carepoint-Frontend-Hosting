@@ -153,7 +153,7 @@ const Home: React.FC = () => {
     const token = localStorage.getItem("token");
 
     if (token) {
-      const socketInstance = io("https://carepointcommunication.eyescart.shop/videocall", {
+      const socketInstance = io("https://carepointcommunication.eyescart.shop", {
         transports: ["websocket"],
       });
       
