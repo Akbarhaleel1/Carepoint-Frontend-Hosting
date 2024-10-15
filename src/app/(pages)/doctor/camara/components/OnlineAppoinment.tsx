@@ -101,6 +101,9 @@ const DoctorVideoCall = () => {
   useEffect(() => {
     const socketInstance = io("https://carepointcommunication.eyescart.shop");
     setSocket(socketInstance);
+    socketInstance.on("connect", () => {
+      console.log("Socket connected:", socketInstance.id);
+    });
 
     if (socketInstance) {
       const doctorData = localStorage.getItem("doctor");
