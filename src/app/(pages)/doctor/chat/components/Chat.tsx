@@ -168,7 +168,7 @@ const DoctorChatInterface: React.FC = () => {
   };
 
   const fetchMessagesForRoom = (roomId: string) => {
-    fetch(`http://localhost:10001/messages/${roomId}`)
+    fetch(`https://communicationchatservice.eyescart.shop/messages/${roomId}`)
       .then((response) => response.json())
       .then((data) => {
         // Update messages with unique ones from the fetch response
