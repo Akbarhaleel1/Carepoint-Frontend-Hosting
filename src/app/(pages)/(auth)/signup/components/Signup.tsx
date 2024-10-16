@@ -283,9 +283,9 @@ const Signup = () => {
                 <SelectContent>
                   <SelectItem value="user">User</SelectItem>
                   <SelectItem value="doctor">Doctor</SelectItem>
-                  <SelectItem value="ambulance">Ambulance Driver</SelectItem>
+                  {/* <SelectItem value="ambulance">Ambulance Driver</SelectItem>
                   <SelectItem value="hospital">Hospital</SelectItem>
-                  <SelectItem value="admin">Admin</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem> */}
                 </SelectContent>
               </Select>
             </div>
