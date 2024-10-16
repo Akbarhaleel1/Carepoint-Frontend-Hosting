@@ -26,7 +26,7 @@ const NotificationModal = ({ isOpen, onClose, doctorName }: any) => {
             Doctor is requesting a video call
           </p>
           <div className="flex justify-center space-x-4">
-            <a href="https://redirect.eyescart.shop/user-service/Appointments/camara">
+            <a href="https://carepoint-frontend-hosting-ns6r.vercel.app/user/Appointments/camara">
             <button 
               className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
             >
