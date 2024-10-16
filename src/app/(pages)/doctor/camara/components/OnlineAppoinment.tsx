@@ -99,7 +99,11 @@ const DoctorVideoCall = () => {
   }, [socket]);
 
   useEffect(() => {
-    const socketInstance = io("https://carepointcommunication.eyescart.shop");
+    // const socketInstance = io("https://carepointcommunication.eyescart.shop");
+    const socketInstance = io("https://carepointcommunication.eyescart.shop", {
+      transports: ["websocket"],
+    });
+    
     setSocket(socketInstance);
 
     if (socketInstance) {
