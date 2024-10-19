@@ -115,7 +115,7 @@ const DoctorVideoCall = () => {
       let doctorEmail = parseDoctor.email
       let userEmail = appoinmentData.user.email;
 
-      const roomId = generateRoomId(doctorEmail, userEmail);
+      const roomId = generateRoomId(userEmail);
       socketInstance.emit('notify-user', {
         roomId: roomId,
         message: 'The doctor wants to notify you.'
@@ -358,7 +358,7 @@ const DoctorVideoCall = () => {
     setUser(userObj)
     let doctorEmail = doctor?.email;
     let userEmail = appoinmentData.user.email;
-    const roomId = generateRoomId(doctorEmail, userEmail);
+    const roomId = generateRoomId(userEmail);
     console.log("roomId", roomId);
     if (!peerConnectionRef.current || !socket) return;
     console.log("startCall is working");
@@ -404,8 +404,8 @@ const DoctorVideoCall = () => {
     }
   };
 
-  const generateRoomId = (doctorEmail: any, userEmail: string) => {
-    const combinedString = `${doctorEmail}-${userEmail}`;
+  const generateRoomId = (userEmail: string) => {
+    const combinedString = `${userEmail}`;
     return btoa(combinedString);
   };
 

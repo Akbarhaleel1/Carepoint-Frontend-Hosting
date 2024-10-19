@@ -166,7 +166,7 @@ const Home: React.FC = () => {
         if (doctorData && userData) {
           let parsedDoctor = JSON.parse(doctorData);
           let parsedUserData = JSON.parse(userData);
-          let roomId = generateRoomId(parsedDoctor.email, parsedUserData.email);
+          let roomId = generateRoomId(parsedUserData.email);
 
           socketInstance.emit("join-notification", { roomId });
           console.log("Socket instance", socketInstance);
@@ -239,8 +239,9 @@ const Home: React.FC = () => {
   //   }
   // }, [router]);
 
-  const generateRoomId = (doctorEmail: string, userEmail: string) => {
-    const combinedString = `${doctorEmail}-${userEmail}`;
+  const generateRoomId = (userEmail: string) => {
+    // const combinedString = `${doctorEmail}-${userEmail}`;
+    const combinedString = `${userEmail}`;
     return btoa(combinedString);
   };
 
