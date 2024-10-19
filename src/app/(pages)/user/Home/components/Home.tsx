@@ -167,7 +167,7 @@ const Home: React.FC = () => {
           let parsedDoctor = JSON.parse(doctorData);
           let parsedUserData = JSON.parse(userData);
           let roomId = generateRoomId(parsedUserData.email);
-
+          console.log('rooom id is', roomId)
           socketInstance.emit("join-notification", { roomId });
           console.log("Socket instance", socketInstance);
         }
