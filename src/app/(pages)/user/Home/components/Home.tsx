@@ -85,42 +85,37 @@ const Home: React.FC = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-  //   const fetchUser = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         "http://http://ad707e099b18f4ca4b085266d8b655a5-3510328.eu-north-1.elb.amazonaws.com/user-service/user",
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         }
-  //       );
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(
+          "http://http://ad707e099b18f4ca4b085266d8b655a5-3510328.eu-north-1.elb.amazonaws.com/user-service/user",
+        );
 
-  //       if (response.ok) {
-  //         const result = await response.json();
-  //         setUser(result.user);
-  //         console.log("User blocked status:", result.user.isBlocked);
+        if (response.ok) {
+          const result = await response.json();
+          setUser(result.user);
+          console.log("User blocked status:", result.user.isBlocked);
 
-  //         // Check if the user is blocked and handle logout
-  //         if (result.user.isBlocked) {
-  //           alert("Your account has been blocked. You will be logged out.");
-  //           handleLogout();
-  //         }
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching user:", error);
-  //     }
-  //   };
+          // Check if the user is blocked and handle logout
+          if (result.user.isBlocked) {
+            alert("Your account has been blocked. You will be logged out.");
+            handleLogout();
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
 
-  //   if (token) {
-  //     fetchUser();
-  //   } else {
-  //     router.push("/login");
-  //   }
-  // }, [router]);
+    if (token) {
+      fetchUser();
+    } else {
+      router.push("/login");
+    }
+  }, [router]);
 
   const generateRoomId = (doctorEmail: string, userEmail: string) => {
     const combinedString = `${doctorEmail}-${userEmail}`;

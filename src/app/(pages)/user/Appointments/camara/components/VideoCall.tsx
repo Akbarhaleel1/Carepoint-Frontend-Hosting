@@ -97,7 +97,6 @@ const UserVideoCall = () => {
   }, [roomId]);
 
   useEffect(() => {
-    console.log('sssssssss')
     const doctorData = localStorage.getItem('doctorOnlineAppoinemnets')
     const userData = localStorage.getItem('user')
     console.log('userData',userData)
