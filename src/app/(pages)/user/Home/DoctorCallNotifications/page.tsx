@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Bell, Phone, X } from 'lucide-react';
 
 const DoctorCallNotification = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,13 +7,11 @@ const DoctorCallNotification = () => {
   const closeModal = () => setIsOpen(false);
 
   const handleAccept = () => {
-    // Handle accept logic here
     console.log('Call accepted');
     closeModal();
   };
 
   const handleReject = () => {
-    // Handle reject logic here
     console.log('Call rejected');
     closeModal();
   };
@@ -25,7 +22,7 @@ const DoctorCallNotification = () => {
         onClick={openModal}
         className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition-colors"
       >
-        <Bell size={24} />
+        Notify
       </button>
 
       {isOpen && (
@@ -34,12 +31,12 @@ const DoctorCallNotification = () => {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-bold text-gray-800">Incoming Call</h2>
               <button onClick={closeModal} className="text-gray-600 hover:text-gray-800">
-                <X size={24} />
+                ✕
               </button>
             </div>
             <div className="mb-6 text-center">
               <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <Phone size={32} className="text-blue-500" />
+                <span className="text-blue-500 text-3xl">📞</span>
               </div>
               <p className="text-lg font-semibold text-gray-700">Dr. John Doe</p>
               <p className="text-sm text-gray-500">is calling you</p>
