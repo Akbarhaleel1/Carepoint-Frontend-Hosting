@@ -31,6 +31,13 @@ const AdminProductListing = () => {
     fetchProductsData();
   }, []);
 
+  const handleDelete = ()=>{
+    console.log('handleDelete')
+  }
+  const handleEdit = ()=>{
+    console.log('handleEdit')
+  }
+
   console.log('product is',products)
   return (
     <div className="bg-gradient-to-br from-gray-900 to-black min-h-screen p-4 sm:p-6 md:p-8">
@@ -60,11 +67,11 @@ const AdminProductListing = () => {
               <p className="text-gray-300 mb-1">Price: ${product.price.toFixed(2)}</p>
               <p className="text-gray-300 mb-4">Stock: {product.stock}</p>
               <div className="flex justify-between items-center">
-                <button className="flex items-center px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">
+                <button onClick={handleEdit} className="flex items-center px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">
                   <Edit size={16} className="mr-1" />
                   Edit
                 </button>
-                <button className="flex items-center px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition duration-300">
+                <button onClick={handleDelete} className="flex items-center px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition duration-300">
                   <Trash2 size={16} className="mr-1" />
                   Delete
                 </button>
