@@ -114,7 +114,7 @@ const UserVideoCall = () => {
   }, []);
 
   const startCall = async () => {
-    console.log('jeeee',peerConnectionRef.current)
+    console.log('peerConnectionRef is',peerConnectionRef.current)
     if (!peerConnectionRef.current || !socket || !roomId) return;
     socket.emit('join-room', { roomId });
     setIsCallActive(true);
