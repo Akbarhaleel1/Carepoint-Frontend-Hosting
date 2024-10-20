@@ -35,7 +35,6 @@ const UserVideoCall = () => {
 
     socketInstance.on('ice-candidate', (data) => {
       console.log('ICE candidate received:', data);
-      
       const peerConnection = peerConnectionRef.current;
       if (peerConnection && data.candidate) {
         const candidate = new RTCIceCandidate(data.candidate);
