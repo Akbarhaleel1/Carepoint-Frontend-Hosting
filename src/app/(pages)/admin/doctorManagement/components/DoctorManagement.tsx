@@ -109,7 +109,7 @@ console.log('filteredAppointments',filteredAppointments)
             <h2 className="col-span-2 text-center ml-[49px]">License Number</h2>
             <h2 className="col-span-3 text-center ml-[35px]">Email</h2>
             <h2 className="col-span-1 text-center ml-[30px]">Contact</h2>
-            <h2 className="col-span-1 text-center ml-[80px]">Status</h2>
+            {/* <h2 className="col-span-1 text-center ml-[80px]">Status</h2> */}
             <h2 className="col-span-1 text-center ml-[105px]">Details</h2>
           </div>
 
@@ -190,7 +190,7 @@ console.log('filteredAppointments',filteredAppointments)
                       <p><strong>Date:</strong> {new Date(appointment.appointmentDate).toLocaleDateString()}</p>
                       <p><strong>Time:</strong> {appointment.appointmentTime}</p>
                       <p><strong>Type:</strong> {appointment.appointmentType}</p>
-                      <p><strong>Status:</strong> {appointment.status}</p>
+                      {/* <p><strong>Status:</strong> {appointment.status}</p> */}
                       <p><strong>Patient Name:</strong> {appointment.users?.firstname} {appointment.users?.lastname}</p>
                       <p><strong>Patient Email:</strong> {appointment.users?.email}</p>
                       <p><strong>Patient Phone Number:</strong> {appointment.users?.phonenumber}</p>
