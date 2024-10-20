@@ -35,19 +35,7 @@ const UserVideoCall = () => {
 
     socketInstance.on('ice-candidate', (data) => {
       console.log('ICE candidate received:', data);
-
-
-
-      
-
-      const configuration = {
-        iceServers: [
-            { urls: 'stun:stun.l.google.com:19302' } 
-        ]
-    };
-    const peerConnection = new RTCPeerConnection(configuration);
-
-      // const peerConnection = peerConnectionRef.current;
+      const peerConnection = peerConnectionRef.current;
       if (peerConnection && data.candidate) {
         const candidate = new RTCIceCandidate(data.candidate);
         peerConnection.addIceCandidate(candidate)
