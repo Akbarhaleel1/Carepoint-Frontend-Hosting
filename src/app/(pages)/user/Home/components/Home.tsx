@@ -122,7 +122,6 @@
 //     router.push("/login");
 //   };
 
-
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -153,10 +152,13 @@ const Home: React.FC = () => {
     const token = localStorage.getItem("token");
 
     if (token) {
-      const socketInstance = io("https://carepointcommunication.eyescart.shop", {
-        transports: ["websocket"],
-      });
-      
+      const socketInstance = io(
+        "https://carepointcommunication.eyescart.shop",
+        {
+          transports: ["websocket"],
+        }
+      );
+
       setSocket(socketInstance);
 
       try {
@@ -166,13 +168,16 @@ const Home: React.FC = () => {
         if (doctorData && userData) {
           let parsedDoctor = JSON.parse(doctorData);
           let parsedUserData = JSON.parse(userData);
-          let roomId = generateRoomId(parsedUserData.email);
-          console.log('rooom id is', roomId)
+          let roomId = generateRoomId(parsedDoctor.email, parsedUserData.email);
+          console.log("rooom id is", roomId);
           socketInstance.emit("join-notification", { roomId });
           console.log("Socket instance", socketInstance);
         }
       } catch (error) {
-        console.error("Error parsing doctor/user data from localStorage:", error);
+        console.error(
+          "Error parsing doctor/user data from localStorage:",
+          error
+        );
       }
 
       // Handle socket connection
@@ -239,9 +244,9 @@ const Home: React.FC = () => {
   //   }
   // }, [router]);
 
-  const generateRoomId = (userEmail: string) => {
-    // const combinedString = `${doctorEmail}-${userEmail}`;
-    const combinedString = `${userEmail}`;
+  const generateRoomId = (doctorEmail: string, userEmail: string) => {
+    const combinedString = `${doctorEmail}-${userEmail}`;
+    // const combinedString = `${userEmail}`;
     return btoa(combinedString);
   };
 
@@ -254,6 +259,9 @@ const Home: React.FC = () => {
     localStorage.removeItem("user");
     setUser(null);
     router.push("/login");
+  };
+  const handleNotification = () => {
+     
   };
 
   const closeModal = () => {
@@ -284,6 +292,12 @@ const Home: React.FC = () => {
               className="text-black hover:text-gray-700"
             >
               Profile
+            </button>
+            <button
+              onClick={handleNotification}
+              className="text-black hover:text-gray-700"
+            >
+              Notification
             </button>
             <span className="text-black">/</span>
             <a
