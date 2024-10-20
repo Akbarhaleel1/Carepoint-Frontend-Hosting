@@ -70,7 +70,7 @@ const AddProductPage = () => {
       }
 
       console.log("data",data)
-      const response = await axiosInstance.post('/admin-service/addProducts', formDataToSend,{
+      const response = await axios.post('https://redirect.eyescart.shop/admin-service/addProducts', formDataToSend,{
         headers: {
           'Content-Type': 'multipart/form-data'
         }
