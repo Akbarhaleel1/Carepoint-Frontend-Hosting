@@ -109,7 +109,7 @@ const UserVideoCall = () => {
       const userEmail = parseUserData.email;
       console.log('doctor',doctorEmail)
       console.log('doctor',userEmail)
-      setRoomId(btoa(`${userEmail}`));
+      setRoomId(btoa(`${doctorEmail}-${userEmail}`));
     }
   }, []);
 
