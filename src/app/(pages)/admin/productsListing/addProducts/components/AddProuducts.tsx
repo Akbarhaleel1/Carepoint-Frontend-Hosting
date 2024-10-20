@@ -70,7 +70,7 @@ const AddProductPage = () => {
       }
 
       console.log("data",data)
-      const response = await axios.post('http://localhost/admin-service/addProducts', formDataToSend,{
+      const response = await axiosInstance.post('/admin-service/addProducts', formDataToSend,{
         headers: {
           'Content-Type': 'multipart/form-data'
         }
