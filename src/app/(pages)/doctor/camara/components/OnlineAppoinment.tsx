@@ -163,11 +163,7 @@ const DoctorVideoCall = () => {
         socketInstance.on("ice-candidate", (data) => {
           console.log("ICE candidate received:", data);
 
-          // const peerConnection = peerConnectionRef.current;
-          const peerConnection = new RTCPeerConnection({
-            iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
-          });
-  
+          const peerConnection = peerConnectionRef.current;
 
           if (peerConnection && data.candidate) {
             const candidate = new RTCIceCandidate(data.candidate);
@@ -198,11 +194,7 @@ const DoctorVideoCall = () => {
     socketInstance.on("answer", (data) => {
       console.log("Received answer from:", data);
 
-      // const peerConnection = peerConnectionRef.current;
-      const peerConnection = new RTCPeerConnection({
-        iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
-      });
-
+      const peerConnection = peerConnectionRef.current;
       if (peerConnection) {
         peerConnection
           .setRemoteDescription(new RTCSessionDescription(data.answer))
@@ -225,6 +217,126 @@ const DoctorVideoCall = () => {
   }, []);
 
 
+  // useEffect(() => {
+  //   // Initialize socket connection
+  //   const socketInstance = io("https://carepointcommunication.eyescart.shop");
+  //   setSocket(socketInstance);
+  
+  //   // Retrieve doctor data from localStorage
+  //   const doctorData = localStorage.getItem("doctor");
+  //   if (doctorData && appoinmentData?.user?.email) {
+  //     const parseDoctor = JSON.parse(doctorData);
+  //     const doctorEmail = parseDoctor.email;
+  //     const userEmail = appoinmentData.user.email;
+  
+  //     // Generate roomId for signaling
+  //     const roomId = generateRoomId(doctorEmail, userEmail);
+  
+  //     // Notify the user
+  //     socketInstance.emit('notify-user', {
+  //       roomId: roomId,
+  //       message: 'The doctor wants to notify you.',
+  //     });
+  //     console.log('Notification is sending..');
+  
+  //     // Initialize media devices and set up peer connection
+  //     const initializeMediaDevices = async () => {
+  //       try {
+  //         const devices = await navigator.mediaDevices.enumerateDevices();
+  //         const audioDevices = devices.filter((device) => device.kind === "audioinput");
+  //         setAudioInputDevices(audioDevices);
+  
+  //         // Get user media (audio and video)
+  //         const stream = await navigator.mediaDevices.getUserMedia({
+  //           video: true,
+  //           audio: true,
+  //         });
+  //         localStreamRef.current = stream;
+  
+  //         // Assign stream to local video element
+  //         if (localVideoRef.current) {
+  //           localVideoRef.current.srcObject = stream;
+  //         }
+  
+  //         // Set up peer connection and add tracks
+  //         const peerConnection = new RTCPeerConnection({
+  //           iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+  //         });
+  //         stream.getTracks().forEach((track) => {
+  //           peerConnection.addTrack(track, stream);
+  //         });
+  //         peerConnectionRef.current = peerConnection;
+  
+  //         // Handle ICE candidates and emit them through the socket
+  //         peerConnection.onicecandidate = (event) => {
+  //           if (event.candidate) {
+  //             socketInstance.emit("ice-candidate", {
+  //               roomId: roomId,
+  //               candidate: event.candidate,
+  //             });
+  //           }
+  //         };
+  
+  //         // Handle incoming ICE candidates from the socket
+  //         socketInstance.on("ice-candidate", (data) => {
+  //           console.log("ICE candidate received:", data);
+  //           const peerConnection = peerConnectionRef.current;
+  
+  //           if (peerConnection && data.candidate) {
+  //             const candidate = new RTCIceCandidate(data.candidate);
+  //             peerConnection
+  //               .addIceCandidate(candidate)
+  //               .then(() => {
+  //                 console.log("Successfully added ICE candidate");
+  //               })
+  //               .catch((error) => {
+  //                 console.error("Error adding ICE candidate", error);
+  //               });
+  //           }
+  //         });
+  
+  //         // Handle track event to receive remote stream
+  //         peerConnection.ontrack = (event) => {
+  //           if (remoteVideoRef.current) {
+  //             remoteVideoRef.current.srcObject = event.streams[0];
+  //           }
+  //         };
+  //       } catch (error) {
+  //         console.error("Error accessing media devices:", error);
+  //       }
+  //     };
+  
+  //     // Call the initialization function for media devices and peer connection
+  //     initializeMediaDevices();
+  
+  //     // Handle answer from the socket
+  //     socketInstance.on("answer", (data) => {
+  //       console.log("Received answer from:", data);
+  //       const peerConnection = peerConnectionRef.current;
+  
+  //       if (peerConnection) {
+  //         peerConnection
+  //           .setRemoteDescription(new RTCSessionDescription(data.answer))
+  //           .then(() => {
+  //             console.log("Remote description set successfully");
+  //           })
+  //           .catch((error) => {
+  //             console.error("Error setting remote description:", error);
+  //           });
+  //       }
+  //     });
+  //   }
+  
+  //   // Cleanup function to disconnect socket and close peer connection
+  //   return () => {
+  //     if (socketInstance) socketInstance.disconnect();
+  //     if (peerConnectionRef.current) peerConnectionRef.current.close();
+  //     if (localStreamRef.current) {
+  //       localStreamRef.current.getTracks().forEach((track) => track.stop());
+  //     }
+  //   };
+  // }, [appoinmentData?.user]); // Added relevant dependencies
+  
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -248,8 +360,6 @@ const DoctorVideoCall = () => {
     let userEmail = appoinmentData.user.email;
     const roomId = generateRoomId(userEmail);
     console.log("roomId", roomId);
-    console.log('peerConnectionRef is',peerConnectionRef.current)
-
     if (!peerConnectionRef.current || !socket) return;
     console.log("startCall is working");
     try {
