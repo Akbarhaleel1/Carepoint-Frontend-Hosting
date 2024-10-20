@@ -3,54 +3,30 @@ import React, { useState } from 'react';
 const DoctorCallNotification = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
-
-  const handleAccept = () => {
-    console.log('Call accepted');
-    closeModal();
-  };
-
-  const handleReject = () => {
-    console.log('Call rejected');
-    closeModal();
-  };
-
   return (
-    <div>
+    <div className="font-sans">
       <button
-        onClick={openModal}
-        className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition-colors"
+        onClick={() => setIsOpen(true)}
+        className="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg"
       >
         Notify
       </button>
 
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg shadow-xl p-6 m-4 max-w-sm w-full">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-gray-800">Incoming Call</h2>
-              <button onClick={closeModal} className="text-gray-600 hover:text-gray-800">
-                ✕
-              </button>
-            </div>
-            <div className="mb-6 text-center">
-              <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-blue-500 text-3xl">📞</span>
-              </div>
-              <p className="text-lg font-semibold text-gray-700">Dr. John Doe</p>
-              <p className="text-sm text-gray-500">is calling you</p>
-            </div>
-            <div className="flex justify-center space-x-4">
+          <div className="bg-white rounded-lg p-6 m-4 max-w-sm w-full">
+            <h2 className="text-xl font-bold mb-4">Incoming Call</h2>
+            <p className="mb-4">Dr. John Doe is calling you</p>
+            <div className="flex justify-between">
               <button
-                onClick={handleReject}
-                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                onClick={() => setIsOpen(false)}
+                className="px-4 py-2 bg-red-500 text-white rounded"
               >
                 Reject
               </button>
               <button
-                onClick={handleAccept}
-                className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+                onClick={() => setIsOpen(false)}
+                className="px-4 py-2 bg-green-500 text-white rounded"
               >
                 Accept
               </button>
