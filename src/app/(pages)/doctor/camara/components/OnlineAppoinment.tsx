@@ -163,7 +163,11 @@ const DoctorVideoCall = () => {
         socketInstance.on("ice-candidate", (data) => {
           console.log("ICE candidate received:", data);
 
-          const peerConnection = peerConnectionRef.current;
+          // const peerConnection = peerConnectionRef.current;
+          const peerConnection = new RTCPeerConnection({
+            iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+          });
+  
 
           if (peerConnection && data.candidate) {
             const candidate = new RTCIceCandidate(data.candidate);
@@ -194,7 +198,11 @@ const DoctorVideoCall = () => {
     socketInstance.on("answer", (data) => {
       console.log("Received answer from:", data);
 
-      const peerConnection = peerConnectionRef.current;
+      // const peerConnection = peerConnectionRef.current;
+      const peerConnection = new RTCPeerConnection({
+        iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+      });
+
       if (peerConnection) {
         peerConnection
           .setRemoteDescription(new RTCSessionDescription(data.answer))
