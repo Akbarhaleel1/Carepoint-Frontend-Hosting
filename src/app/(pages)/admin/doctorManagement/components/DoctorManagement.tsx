@@ -141,9 +141,9 @@ console.log('filteredAppointments',filteredAppointments)
                   <p className="col-span-1 text-gray-300 text-center ml-4">
                     {user.phonenumber}
                   </p>
-                  <div className="col-span-1 flex justify-center ml-[106px]">
+                  {/* <div className="col-span-1 flex justify-center ml-[106px]">
                     <ToggleButton email={user.email} />
-                  </div>
+                  </div> */}
                   <div className="col-span-1 flex justify-center">
                     <button
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 ml-44 rounded text-sm"
