@@ -35,7 +35,16 @@ const UserVideoCall = () => {
 
     socketInstance.on('ice-candidate', (data) => {
       console.log('ICE candidate received:', data);
-      const peerConnection = peerConnectionRef.current;
+
+
+      const configuration = {
+        iceServers: [
+            { urls: 'stun:stun.l.google.com:19302' } 
+        ]
+    };
+    const peerConnection = new RTCPeerConnection(configuration);
+
+      // const peerConnection = peerConnectionRef.current;
       if (peerConnection && data.candidate) {
         const candidate = new RTCIceCandidate(data.candidate);
         peerConnection.addIceCandidate(candidate)
@@ -50,7 +59,14 @@ const UserVideoCall = () => {
 
     socketInstance.on('call-created', async (call) => {
       console.log('Call created:', call);
-      const peerConnection = peerConnectionRef.current;
+      // const peerConnection = peerConnectionRef.current;
+      const configuration = {
+        iceServers: [
+            { urls: 'stun:stun.l.google.com:19302' } 
+        ]
+    };
+    const peerConnection = new RTCPeerConnection(configuration);
+
       if (peerConnection) {
         await peerConnection.setRemoteDescription(new RTCSessionDescription(call.offer));
         const answer = await peerConnection.createAnswer();
