@@ -67,9 +67,16 @@ const UserVideoCall = () => {
           localVideoRef.current.srcObject = stream;
         }
 
+        // const peerConnection = new RTCPeerConnection({
+        //   iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+        // });
+
         const peerConnection = new RTCPeerConnection({
-          iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+          iceServers: [
+            { urls: 'stun:51.21.131.193:3478' }
+          ]
         });
+        
 
         stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
         peerConnectionRef.current = peerConnection;
