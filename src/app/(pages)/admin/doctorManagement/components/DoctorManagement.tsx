@@ -12,13 +12,13 @@ import { Button, Modal } from 'antd';
 
 interface Appointment {
   _id: string;
-  doctor: string; // Doctor's ID
-  users: User | null; // Include user details or null if not available
-  appointmentDate: string; // Use string if the date is returned as ISO string
+  doctor: string; 
+  users: User | null; 
+  appointmentDate: string;
   appointmentTime: string;
   appointmentType: 'online' | 'offline';
   status: 'pending' | 'confirmed' | 'cancelled' | 'completed';
-  createdAt: string; // Use string if the date is returned as ISO string
+  createdAt: string;
 }
 
 interface User {
