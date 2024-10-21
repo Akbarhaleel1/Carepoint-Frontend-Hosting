@@ -73,10 +73,10 @@ const AdminProductListing = () => {
               <p className="text-gray-300 mb-1">Price: ${product.price.toFixed(2)}</p>
               <p className="text-gray-300 mb-4">Stock: {product.stock}</p>
               <div className="flex justify-between items-center">
-                <button onClick={handleEdit} className="flex items-center px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">
+                {/* <button onClick={handleEdit} className="flex items-center px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">
                   <Edit size={16} className="mr-1" />
                   Edit
-                </button>
+                </button> */}
                 <button onClick={()=>handleDelete(product._id)} className="flex items-center px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition duration-300">
                   <Trash2 size={16} className="mr-1" />
                   Delete
