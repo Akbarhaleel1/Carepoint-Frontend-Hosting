@@ -60,12 +60,23 @@ const UserVideoCall = () => {
       }
     });
 
+    // navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+    //   .then(stream => {
+    //     localStreamRef.current = stream;
+    //     if (localVideoRef.current) {
+    //       localVideoRef.current.srcObject = stream;
+    //     }
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-      .then(stream => {
-        localStreamRef.current = stream;
-        if (localVideoRef.current) {
-          localVideoRef.current.srcObject = stream;
-        }
+  .then(stream => {
+    localStreamRef.current = stream;
+
+    if (localVideoRef.current) {
+      localVideoRef.current.srcObject = stream;
+      console.log('Local stream set to video element:', stream);
+    } else {
+      console.warn('Local video element not found.');
+    }
+
 
         // const peerConnection = new RTCPeerConnection({
         //   iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
@@ -90,11 +101,20 @@ const UserVideoCall = () => {
           }
         };
 
+        // peerConnection.ontrack = (event: RTCTrackEvent) => {
+        //   if (remoteVideoRef.current) {
+        //     remoteVideoRef.current.srcObject = event.streams[0];
+        //   }
+        // };
         peerConnection.ontrack = (event: RTCTrackEvent) => {
           if (remoteVideoRef.current) {
             remoteVideoRef.current.srcObject = event.streams[0];
+            console.log('Remote stream added:', event.streams[0]);
+          } else {
+            console.warn('Remote video element not found.');
           }
         };
+        
       });
 
     return () => {
