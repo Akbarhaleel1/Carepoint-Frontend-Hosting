@@ -133,9 +133,6 @@ const Home: React.FC = () => {
     setUser(null);
     router.push("/login");
   };
-  const handleNotification = () => {
-     
-  };
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -166,12 +163,13 @@ const Home: React.FC = () => {
             >
               Profile
             </button>
+            <a href="https://carepoint-frontend-hosting-ns6r.vercel.app/user/Home">
             <button
-              onClick={handleNotification}
               className="text-black hover:text-gray-700"
             >
               Notification
             </button>
+            </a>
             <span className="text-black">/</span>
             <a
               href="/login"
