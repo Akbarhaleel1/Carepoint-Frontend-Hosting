@@ -34,7 +34,7 @@ const AdminProductListing = () => {
   const handleDelete =async (productId:string)=>{
     console.log('handleDelete',productId)
     const resultForAdminService = await axiosInstance.post('/admin-service/productDelete',{productId});
-    const resultForUserService = await axiosInstance.post('/admin-service/productDelete',{productId});
+    const resultForUserService = await axiosInstance.post('/user-service/productDelete',{productId});
     console.log('resultForAdminService is ', resultForAdminService)
     console.log('resultForUserService is ', resultForAdminService)
   }
