@@ -31,8 +31,10 @@ const AdminProductListing = () => {
     fetchProductsData();
   }, []);
 
-  const handleDelete = ()=>{
-    console.log('handleDelete')
+  const handleDelete =async (productId:string)=>{
+    console.log('handleDelete',productId)
+    const result = await axiosInstance.post('/admin-service/productDelete',{productId});
+    console.log('reuslt is ', result)
   }
   const handleEdit = ()=>{
     console.log('handleEdit')
@@ -71,7 +73,7 @@ const AdminProductListing = () => {
                   <Edit size={16} className="mr-1" />
                   Edit
                 </button>
-                <button onClick={handleDelete} className="flex items-center px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition duration-300">
+                <button onClick={()=>handleDelete(product._id)} className="flex items-center px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition duration-300">
                   <Trash2 size={16} className="mr-1" />
                   Delete
                 </button>

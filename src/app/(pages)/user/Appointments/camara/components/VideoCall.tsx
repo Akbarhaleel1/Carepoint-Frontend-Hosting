@@ -236,40 +236,7 @@ const UserVideoCall = () => {
               </button>
             </div>
           </div>
-          {/* <div className="w-full md:w-80 bg-white bg-opacity-50 rounded-2xl shadow-lg overflow-hidden">
-            <div className="bg-indigo-600 text-white p-4">
-              <h3 className="text-xl font-bold">Chat</h3>
-            </div>
-            <div className="h-64 overflow-y-auto p-4 space-y-2">
-              {chatMessages.map((msg, index) => (
-                <div key={index} className={`flex ${msg.sender === 'You' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-xs px-4 py-2 rounded-lg ${
-                    msg.sender === 'You' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
-                  }`}>
-                    <p className="text-sm">{msg.message}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="p-4 border-t border-gray-200">
-              <div className="flex items-center">
-                <input
-                  type="text"
-                  value={newMessage}
-                  onChange={(e) => setNewMessage(e.target.value)}
-                  placeholder="Type a message..."
-                  className="flex-1 p-2 rounded-l-full border-t border-b border-l focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-                />
-                <button
-                  onClick={sendMessage}
-                  className="p-2 rounded-r-full bg-indigo-500 text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <MessageSquare size={20} />
-                </button>
-              </div>
-            </div>
-          </div> */}
+
         </div>
       </div>
     </div>
