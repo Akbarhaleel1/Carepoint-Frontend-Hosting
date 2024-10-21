@@ -36,8 +36,10 @@ const AdminProductListing = () => {
     const result = await axiosInstance.post('/admin-service/productDelete',{productId});
     console.log('reuslt is ', result)
   }
-  const handleEdit = ()=>{
+  const handleEdit =async ()=>{
     console.log('handleEdit')
+    // const result = await axiosInstance.post('/admin-service/productDelete',{productId});
+
   }
 
   console.log('product is',products)
