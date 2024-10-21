@@ -163,7 +163,9 @@ const Home: React.FC = () => {
             >
               Profile
             </button>
-            <a href="https://carepoint-frontend-hosting-ns6r.vercel.app/user/Home">
+            <span className="text-black">/</span>
+
+            <a href="https://carepoint-frontend-hosting-ns6r.vercel.app/user/Appointments/camara">
             <button
               className="text-black hover:text-gray-700"
             >
