@@ -290,6 +290,7 @@ const Appointments = () => {
                         {doctor.specialization || "No specialization provided"}
                       </p>
                     </div>
+                    <a href="https://carepoint-frontend-hosting-ns6r.vercel.app/user/Appointments/camara">
                     <div className="flex items-center justify-center w-12 h-8 lg:w-16 lg:h-10 bg-blue-100 rounded-full">
                       <svg
                         className="w-3 h-3 lg:w-4 lg:h-4 text-blue-500"
@@ -306,6 +307,7 @@ const Appointments = () => {
                         />
                       </svg>
                     </div>
+                    </a>
                   </div>
                   <div className="border-b border-gray-200 my-3 lg:my-4"></div>
                   <div className="mb-3 lg:mb-4">
