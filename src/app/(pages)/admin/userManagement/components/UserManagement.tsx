@@ -131,7 +131,7 @@ const UserManagement: React.FC = () => {
                   <div className="w-2/3 flex justify-between items-center">
                     <p className="text-gray-300">{user.email}</p>
                     {/* <p className="text-gray-300">{user.phonenumber}</p> */}
-                    <ToggleButton email={user.email} />
+                    {/* <ToggleButton email={user.email} /> */}
                     <button
                       className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded"
                       onClick={() => handleView(user._id)}
