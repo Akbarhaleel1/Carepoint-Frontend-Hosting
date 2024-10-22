@@ -44,15 +44,15 @@ const DoctorManagement: React.FC = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [filteredAppointments, setFilteredAppointments] = useState<Appointment[]>([]);
 
-  // const toggleStatusDropdown = () => {
-  //   setStatusOpen(!isStatusOpen);
-  //   setDateFilterOpen(false);
-  // };
+  const toggleStatusDropdown = () => {
+    setStatusOpen(!isStatusOpen);
+    setDateFilterOpen(false);
+  };
 
-  // const toggleDateFilterDropdown = () => {
-  //   setDateFilterOpen(!isDateFilterOpen);
-  //   setStatusOpen(false);
-  // };
+  const toggleDateFilterDropdown = () => {
+    setDateFilterOpen(!isDateFilterOpen);
+    setStatusOpen(false);
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -92,16 +92,16 @@ console.log('filteredAppointments',filteredAppointments)
   return (
     <div className="bg-gradient-to-br from-gray-900 to-black min-h-screen p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
-        {/* <div className="flex flex-wrap justify-center gap-4 mt-10 sm:mt-20 md:mt-24 lg:mt-32">
-          <StatusDropdown
+        <div className="flex flex-wrap justify-center gap-4 mt-10 sm:mt-20 md:mt-24 lg:mt-32">
+          {/* <StatusDropdown
             isOpen={isStatusOpen}
             toggleDropdown={toggleStatusDropdown}
           />
           <DateFilterDropdown
             isOpen={isDateFilterOpen}
             toggleDropdown={toggleDateFilterDropdown}
-          />
-        </div> */}
+          /> */}
+        </div>
 
         <div className="mt-10 sm:mt-16">
           <div className="hidden sm:grid grid-cols-12 gap-8 text-white mb-6 px-4 sm:px-6 md:px-8 text-sm sm:text-base font-semibold">

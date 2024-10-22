@@ -98,8 +98,6 @@ const Home: React.FC = () => {
           const result = await response.json();
           setUser(result.user);
           console.log("User blocked status:", result.user.isBlocked);
-
-          // Check if the user is blocked and handle logout
           if (result.user.isBlocked) {
             alert("Your account has been blocked. You will be logged out.");
             handleLogout();
