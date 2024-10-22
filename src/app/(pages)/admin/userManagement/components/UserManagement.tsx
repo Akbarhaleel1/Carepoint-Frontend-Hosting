@@ -106,7 +106,7 @@ const UserManagement: React.FC = () => {
             <div className="w-2/3 flex justify-between">
               <h2>Email</h2>
               {/* <h2>Contact</h2> */}
-              <h2>Status</h2>
+              {/* <h2>Status</h2> */}
               <h2>Action</h2>
             </div>
           </div>
