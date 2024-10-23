@@ -63,7 +63,7 @@ const Otp = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const otpCode = otp.join(""); // Combine OTP inputs into a single string
+    const otpCode = otp.join(""); 
 
     try {
       const response = await axiosInstance.post("/user-service/forgotPassword", {
