@@ -66,7 +66,7 @@ const Otp = () => {
     const otpCode = otp.join(""); // Combine OTP inputs into a single string
 
     try {
-      const response = await axios.post("http://localhost:4000/user-service/forgotPassword", {
+      const response = await axiosInstance.post("/user-service/forgotPassword", {
         otp: otpCode,email:emailParam
       });
       console.log("OTP verified successfully:", response.data);
