@@ -90,7 +90,7 @@ const Otp = () => {
       }
     } catch (error) {
       console.error("Error verifying OTP:", error);
-      setError("Invalid OTP. Please try again.");
+      // setError("Invalid OTP. Please try again.");
     }
   };
 
